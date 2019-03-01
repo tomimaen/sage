@@ -11,6 +11,7 @@ module.exports = ({ file, options }) => {
       autoprefixer: true,
       cssnano: options.enabled.optimize ? cssnanoConfig : false,
       'postcss-object-fit-images': true,
+      'postcss-inline-svg': true,
     },
   };
 };
