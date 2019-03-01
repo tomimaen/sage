@@ -89,3 +89,20 @@ add_filter('comments_template', function ($comments_template) {
 
     return $comments_template;
 }, 100);
+
+/**
+ * Wrap embedded media.
+ *
+ * @param string $html
+ * @return string
+ */
+add_filter('embed_oembed_html', function ($html) {
+    return sprintf('<div class="responsive-embed">%s</div>', $html);
+});
+
+/**
+ * Remove Roots\Soil embed wrapper.
+ */
+add_action('after_setup_theme', function () {
+    remove_filter('embed_oembed_html', 'Roots\\Soil\\CleanUp\\embed_wrap');
+}, 101);
