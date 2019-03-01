@@ -82,6 +82,7 @@
     "custom-event-polyfill": "^1.0.6",
     "jquery": "^3.3.1",
     "object-fit-images": "^3.2.4",
-    "popper.js": "^1.14.7"
+    "popper.js": "^1.14.7",
+    "vanilla-lazyload": "^11.0.2"
   }
 }
