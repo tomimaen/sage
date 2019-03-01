@@ -7,6 +7,7 @@ use Sober\Controller\Controller;
 class App extends Controller
 {
     use Partials\PageMenu;
+    use Partials\NavMenu;
 
     public function siteName()
     {
