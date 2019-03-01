@@ -10,6 +10,7 @@ module.exports = ({ file, options }) => {
     plugins: {
       autoprefixer: true,
       cssnano: options.enabled.optimize ? cssnanoConfig : false,
+      'postcss-object-fit-images': true,
     },
   };
 };
