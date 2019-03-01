@@ -6,6 +6,8 @@ use Sober\Controller\Controller;
 
 class App extends Controller
 {
+    use Partials\PageMenu;
+
     public function siteName()
     {
         return get_bloginfo('name');
