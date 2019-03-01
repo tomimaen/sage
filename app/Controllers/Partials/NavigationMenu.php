@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Partials;
 
-trait NavMenu
+trait NavigationMenu
 {
     public function __construct()
     {

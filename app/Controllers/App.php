@@ -7,7 +7,7 @@ use Sober\Controller\Controller;
 class App extends Controller
 {
     use Partials\PageMenu;
-    use Partials\NavMenu;
+    use Partials\NavigationMenu;
     use Partials\SocialMediaShareUrls;
     use Partials\Media;
 
