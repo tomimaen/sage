@@ -1,4 +1,5 @@
 import camelCase from './camelCase';
+import 'custom-event-polyfill';
 
 /**
  * DOM-based Routing
