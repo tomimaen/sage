@@ -8,6 +8,7 @@ class App extends Controller
 {
     use Partials\PageMenu;
     use Partials\NavMenu;
+    use Partials\SocialMediaShareUrls;
 
     public function siteName()
     {
