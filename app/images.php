@@ -3,16 +3,53 @@
 namespace App;
 
 /**
- * Update existing image sizes and add new ones.
+ * Add new image sizes.
+ *
+ * @return void
  */
 add_action('after_setup_theme', function () {
-    add_image_size('thumbnail', 450, 450, true);
-    add_image_size('medium', 1366, 0, false);
-    add_image_size('medium_large', 1980, 0, false);
-    add_image_size('large', 2560, 0, false);
+    add_image_size('thumbnail_no_crop', 450, 0);
+    add_image_size('thumbnail_medium', 768, 0);
+});
 
-    add_image_size('thumbnail_no_crop', 450, 0, false);
-    add_image_size('thumbnail_medium', 768, 0, false);
+/**
+ * Update existing image sizes.
+ *
+ * @return void
+ */
+add_action('admin_init', function () {
+    $image_sizes = [
+        [
+            'name' => 'thumbnail',
+            'w' => 450,
+            'h' => 450,
+        ],
+        [
+            'name' => 'medium',
+            'w' => 1366,
+            'h' => 0,
+        ],
+        [
+            'name' => 'medium_large',
+            'w' => 1980,
+            'h' => 0,
+        ],
+        [
+            'name' => 'large',
+            'w' => 2560,
+            'h' => 0,
+        ]
+    ];
+
+    foreach ($image_sizes as $size) {
+        $existing_w = (int) get_option($size['name'] . '_size_w');
+        $existing_h = (int) get_option($size['name'] . '_size_h');
+
+        if ($existing_w !== $size['w'] || $existing_h !== $size['h']) {
+            update_option($size['name'] . '_size_h', $size['h']);
+            update_option($size['name'] . '_size_w', $size['w']);
+        }
+    }
 
     update_option('image_default_align', 'none');
     update_option('image_default_link_type', 'none');
