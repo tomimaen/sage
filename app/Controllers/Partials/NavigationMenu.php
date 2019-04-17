@@ -6,7 +6,7 @@ trait NavigationMenu
 {
     public function __construct()
     {
-        add_filter('tree_nav_menu_item', [$this, 'set_nav_menu_item_properties'], 10, 1);
+        add_filter('tree_nav_menu_item', [$this, 'setMenuItemProperties'], 10, 1);
     }
 
     /**
@@ -15,7 +15,7 @@ trait NavigationMenu
      * @param string $menu Menu name or theme location.
      * @return array|false|string
      */
-    public static function get_menu($menu)
+    public static function getMenu($menu)
     {
         $locations = get_nav_menu_locations();
 
@@ -24,7 +24,7 @@ trait NavigationMenu
         }
 
         $walker = new \App\Lib\TreeWalkerNavMenu();
-        $items = wp_get_nav_menu_items( $menu );
+        $items = wp_get_nav_menu_items($menu);
         _wp_menu_item_classes_by_context($items);
 
         return $walker->walk($items, 0);
@@ -36,7 +36,7 @@ trait NavigationMenu
      * @param object $menu_item Menu item.
      * @return object
      */
-    public static function set_nav_menu_item_properties($menu_item)
+    public static function setMenuItemProperties($menu_item)
     {
         // @todo set active classes as needed
 

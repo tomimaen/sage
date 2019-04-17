@@ -5,17 +5,16 @@ namespace App\Controllers\Partials;
 trait SocialMediaShareUrls
 {
     /**
-     * Get social media share urls.
+     * Get social media share links
      *
-     * @param object $post Post to share.
-     * @return array Share urls.
+     * @return array Share links.
      */
-    public static function get_social_share_urls($post)
+    public static function getSocialShareUrls($post)
     {
         $socmed = new \App\Lib\SocialMediaShareUrls();
 
-        $social_media_names = $socmed->GetSocialMediaSites_WithShareLinks_OrderedByPopularity();
-        $social_media_urls = $socmed->GetSocialMediaSiteLinks_WithShareLinks([
+        $social_media_names = $socmed->GetSocialMediaSitesWithShareLinksOrderedByPopularity();
+        $social_media_urls = $socmed->GetSocialMediaSiteLinksWithShareLinks([
             'url' => get_permalink($post),
             'title' => $post->post_title,
         ]);

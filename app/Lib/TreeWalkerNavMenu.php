@@ -9,7 +9,8 @@ namespace App\Lib;
  *
  * @see https://gist.github.com/kucrut/efb593d4b263a4b1b6df2549a746a29c
  */
-class TreeWalkerNavMenu extends \Walker_Nav_Menu {
+class TreeWalkerNavMenu extends \Walker_Nav_Menu
+{
 
     /**
      * Check if any of the array of values exist in array.
@@ -18,8 +19,9 @@ class TreeWalkerNavMenu extends \Walker_Nav_Menu {
      * @param $haystack
      * @return bool
      */
-    protected function in_array_any ( $needles, $haystack ) {
-        return ! empty( array_intersect( $needles, $haystack ) );
+    protected function inArrayAny($needles, $haystack)
+    {
+        return ! empty(array_intersect($needles, $haystack));
     }
 
     /**
@@ -30,15 +32,16 @@ class TreeWalkerNavMenu extends \Walker_Nav_Menu {
      * @param  int    $depth Item's depth.
      * @return object
      */
-    protected function prepare_item( $item, $args, $depth ) {
-        $title   = apply_filters( 'the_title', $item->title, $item->ID );
-        $title   = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-        $classes = apply_filters( 'nav_menu_css_class', array_filter( $item->classes ), $item, $args, $depth );
+    protected function prepareItem($item, $args, $depth)
+    {
+        $title   = apply_filters('the_title', $item->title, $item->ID);
+        $title   = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
+        $classes = apply_filters('nav_menu_css_class', array_filter($item->classes), $item, $args, $depth);
 
         $item = (object) [
-            'id'               => absint( $item->ID ),
+            'id'               => absint($item->ID),
             'order'            => (int) $item->menu_order,
-            'parent'           => absint( $item->menu_item_parent ),
+            'parent'           => absint($item->menu_item_parent),
             'title'            => $title,
             'url'              => $item->url,
             'attr'             => $item->attr_title,
@@ -46,36 +49,39 @@ class TreeWalkerNavMenu extends \Walker_Nav_Menu {
             'classes'          => $classes,
             'xfn'              => $item->xfn,
             'description'      => $item->description,
-            'object_id'        => absint( $item->object_id ),
+            'object_id'        => absint($item->object_id),
             'object'           => $item->object,
             'type'             => $item->type,
             'type_label'       => $item->type_label,
-            'current'          => $this->in_array_any(
+            'current'          => $this->inArrayAny(
                 [
                     'current-menu-item',
                     'current_page_item',
                 ],
-                $classes),
-            'current_parent'   => $this->in_array_any(
+                $classes
+            ),
+            'current_parent'   => $this->inArrayAny(
                 [
                     'current-menu-parent',
                     'current_page_parent',
                     "current-{$item->object}-parent",
                     "current-{$item->type}-parent"
                 ],
-                $classes),
-            'current_ancestor' => $this->in_array_any(
+                $classes
+            ),
+            'current_ancestor' => $this->inArrayAny(
                 [
                     'current-menu-ancestor',
                     'current_page_ancestor',
                     "current-{$item->object}-ancestor",
                     "current-{$item->type}-ancestor"
                 ],
-                $classes),
+                $classes
+            ),
             'children'         => [],
         ];
 
-        return apply_filters( 'tree_nav_menu_item', $item );
+        return apply_filters('tree_nav_menu_item', $item);
     }
 
     /**
@@ -90,21 +96,23 @@ class TreeWalkerNavMenu extends \Walker_Nav_Menu {
      * @param array  $args              An array of arguments.
      * @param array  $output            Passed by reference. Used to append additional content.
      */
-    public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
-        if ( ! $element ) {
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
+    {
+        if (! $element) {
             return;
         }
 
-        if ( ! is_array( $output ) ) {
+        if (! is_array($output)) {
             $output = [];
         }
 
         $id_field = $this->db_fields['id'];
         $id       = $element->$id_field;
-        $item     = $this->prepare_item( $element, $args, $depth );
+        $item     = $this->prepareItem($element, $args, $depth);
 
-        if ( ! empty( $children_elements[ $id ] ) ) {
-            foreach ( $children_elements[ $id ] as $child ) {
+        if (! empty($children_elements[ $id ])) {
+            foreach ($children_elements[ $id ] as $child) {
                 $this->display_element(
                     $child,
                     $children_elements,
@@ -115,7 +123,7 @@ class TreeWalkerNavMenu extends \Walker_Nav_Menu {
                 );
             }
 
-            unset( $children_elements[ $id ] );
+            unset($children_elements[ $id ]);
         }
 
         $output[] = $item;

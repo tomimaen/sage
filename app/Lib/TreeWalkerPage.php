@@ -10,13 +10,25 @@ namespace App\Lib;
 class TreeWalkerPage extends \Walker_Page
 {
 
-    public function start_lvl( &$output, $depth = 0, $args = array() ) {}
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function start_lvl(&$output, $depth = 0, $args = array())
+    {
+    }
 
-    public function end_lvl( &$output, $depth = 0, $args = array() ) {}
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function end_lvl(&$output, $depth = 0, $args = array())
+    {
+    }
 
-    public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {}
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function start_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0)
+    {
+    }
 
-    public function end_el( &$output, $object, $depth = 0, $args = array() ) {}
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function end_el(&$output, $object, $depth = 0, $args = array())
+    {
+    }
 
     /**
      * Prepare item.
@@ -24,7 +36,7 @@ class TreeWalkerPage extends \Walker_Page
      * @param object $element Page object.
      * @return object
      */
-    public function prepare_item($element)
+    public function prepareItem($element)
     {
         $current_page = get_the_ID();
         $_current_page = $current_page ? get_post($current_page) : false;
@@ -36,7 +48,7 @@ class TreeWalkerPage extends \Walker_Page
             $element->current_ancestor = in_array($element->ID, $_current_page->ancestors);
         }
 
-        return apply_filters('tree_page_menu_item', $element);
+        return apply_filters('bridge_page_menu_item', $element);
     }
 
     /**
@@ -51,22 +63,23 @@ class TreeWalkerPage extends \Walker_Page
      * @param array  $args              An array of arguments.
      * @param array  $output            Passed by reference. Used to append additional content.
      */
-    public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
+    // @codingStandardsIgnoreLine PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function display_element($element, &$children, $max_depth, $depth, $args, &$output)
     {
-        if ( ! is_array( $output ) ) {
+        if (! is_array($output)) {
             $output = [];
         }
 
-        $element = $this->prepare_item($element);
+        $element = $this->prepareItem($element);
 
         if (0 === $depth) {
             $output[$element->ID] = $element;
         }
 
-        if (isset($children_elements[$element->ID])) {
-            $element->children_elements = $children_elements[$element->ID];
+        if (isset($children[$element->ID])) {
+            $element->children = $children[$element->ID];
         }
 
-        parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+        parent::display_element($element, $children, $max_depth, $depth, $args, $output);
     }
 }

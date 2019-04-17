@@ -10,12 +10,12 @@ trait PageMenu
      * @param array $get_pages_args get_pages() function args.
      * @return array
      */
-    public static function get_page_menu($get_pages_args = [])
+    public static function getPageMenu($get_pages_args = [])
     {
-        $get_pages_args = wp_parse_args([
+        $get_pages_args = wp_parse_args($get_pages_args, [
             'sort_column' => 'menu_order',
-            'child_of' => self::get_page_ancestor(),
-        ], $get_pages_args);
+            'child_of' => self::getPageAncestor(),
+        ]);
 
         $walker = new \App\Lib\TreeWalkerPage();
         $pages = get_pages($get_pages_args);
@@ -28,7 +28,7 @@ trait PageMenu
      *
      * @return int
      */
-    public static function get_page_ancestor()
+    public static function getPageAncestor()
     {
         global $post;
 
