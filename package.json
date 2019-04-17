@@ -28,9 +28,10 @@
     "build:profile": "webpack --progress --profile --json --config resources/assets/build/webpack.config.js",
     "start": "webpack --hide-modules --watch --config resources/assets/build/webpack.config.js",
     "rmdist": "rimraf dist",
-    "lint": "npm run -s lint:scripts && npm run -s lint:styles",
+    "lint": "npm run -s lint:scripts && npm run -s lint:styles && npm run -s lint:php",
     "lint:scripts": "eslint resources/assets/scripts resources/assets/build",
     "lint:styles": "stylelint \"resources/assets/styles/**/*.{css,sass,scss,sss,less}\"",
+    "lint:php": "composer test",
     "test": "npm run -s lint"
   },
   "engines": {
