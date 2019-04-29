@@ -1,0 +1,27 @@
+@each $name, $hex in $custom-skins {
+  .#{$name} {
+    color: $hex;
+  }
+
+  .bg-#{$name} {
+    background-color: $hex;
+  }
+
+  .b--#{$name} {
+    border-color: $hex;
+  }
+
+  .hover-bg-#{$name} {
+    &:hover,
+    &:focus {
+      background-color: $hex;
+    }
+  }
+
+  .hover-#{$name} {
+    &:hover,
+    &:focus {
+      color: $hex;
+    }
+  }
+}

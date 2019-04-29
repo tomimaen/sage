@@ -1,0 +1,61 @@
+.translate-none { transform: none; }
+
+.translate-left-50 { transform: translateX(-50%); }
+.translate-left-100 { transform: translateX(-100%); }
+
+.translate-right-50 { transform: translateX(50%); }
+.translate-right-100 { transform: translateX(100%); }
+
+.translate-top-50 { transform: translateY(-50%); }
+.translate-top-100 { transform: translateY(-100%); }
+
+.translate-bottom-50 { transform: translateY(50%); }
+.translate-bottom-100 { transform: translateY(100%); }
+
+@media #{$breakpoint-not-small} {
+  .translate-none-ns { transform: none; }
+
+  .translate-left-50-ns { transform: translateX(-50%); }
+  .translate-left-100-ns { transform: translateX(-100%); }
+
+  .translate-right-50-ns { transform: translateX(50%); }
+  .translate-right-100-ns { transform: translateX(100%); }
+
+  .translate-top-50-ns { transform: translateY(-50%); }
+  .translate-top-100-ns { transform: translateY(-100%); }
+
+  .translate-bottom-50-ns { transform: translateY(50%); }
+  .translate-bottom-100-ns { transform: translateY(100%); }
+}
+
+@media #{$breakpoint-medium} {
+  .translate-none-m { transform: none; }
+
+  .translate-left-50-m { transform: translateX(-50%); }
+  .translate-left-100-m { transform: translateX(-100%); }
+
+  .translate-right-50-m { transform: translateX(50%); }
+  .translate-right-100-m { transform: translateX(100%); }
+
+  .translate-top-50-m { transform: translateY(-50%); }
+  .translate-top-100-m { transform: translateY(-100%); }
+
+  .translate-bottom-50-m { transform: translateY(50%); }
+  .translate-bottom-100-m { transform: translateY(100%); }
+}
+
+@media #{$breakpoint-large} {
+  .translate-none-l { transform: none; }
+
+  .translate-left-50-l { transform: translateX(-50%); }
+  .translate-left-100-l { transform: translateX(-100%); }
+
+  .translate-right-50-l { transform: translateX(50%); }
+  .translate-right-100-l { transform: translateX(100%); }
+
+  .translate-top-50-l { transform: translateY(-50%); }
+  .translate-top-100-l { transform: translateY(-100%); }
+
+  .translate-bottom-50-l { transform: translateY(50%); }
+  .translate-bottom-100-l { transform: translateY(100%); }
+}
