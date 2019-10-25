@@ -3,54 +3,84 @@
  * @see http://codex.wordpress.org/CSS#WordPress_Generated_Classes
  */
 
-/** Media alignment */
+/* =WordPress Core
+-------------------------------------------------------------- */
 .alignnone {
-  margin-left: 0;
-  margin-right: 0;
-  max-width: 100%;
-  height: auto;
+  margin: 5px 20px 20px 0;
 }
 
-.aligncenter {
+.aligncenter,
+div.aligncenter {
   display: block;
-  margin: ($spacer / 2) auto;
-  height: auto;
+  margin: 5px auto 5px auto;
 }
 
-.alignleft,
 .alignright {
-  margin-bottom: ($spacer / 2);
-  height: auto;
+  float: right;
+  margin: 5px 0 20px 20px;
 }
 
-@include media-breakpoint-up(sm) {
-  .alignleft {
-    float: left;
-    margin-right: ($spacer / 2);
-  }
-
-  .alignright {
-    float: right;
-    margin-left: ($spacer / 2);
-  }
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
 }
 
-/** Captions */
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .wp-caption {
-  @extend .figure;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%; /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px;
 }
 
 .wp-caption img {
-  @extend .figure-img;
-  @extend .img-fluid;
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
 }
 
-.wp-caption-text {
-  @extend .figure-caption;
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
 }
 
-/** Text meant only for screen readers */
 .screen-reader-text {
-  @extend .sr-only;
-  @extend .sr-only-focusable;
+  @extend .clip;
 }

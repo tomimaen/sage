@@ -106,3 +106,18 @@ add_filter('embed_oembed_html', function ($html) {
 add_action('after_setup_theme', function () {
     remove_filter('embed_oembed_html', 'Roots\\Soil\\CleanUp\\embed_wrap');
 }, 101);
+
+/**
+ * Hook as early as possible in order to set fonts-loaded class for html.
+ *
+ * @return void
+ */
+add_action('wp_head', function () {
+    ?>
+         <script>
+            if ( sessionStorage.fontsLoaded ) {
+                document.documentElement.className += " fonts-loaded";
+            }
+        </script>
+    <?php
+});

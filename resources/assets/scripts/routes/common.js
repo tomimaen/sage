@@ -1,5 +1,6 @@
-import objectFitImages from 'object-fit-images';
+import ObjectFitImages from 'object-fit-images';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload';
+import WebFontLoader from '../components/WebFontLoader';
 
 export default {
   init() {
@@ -8,9 +9,11 @@ export default {
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired
 
-    objectFitImages();
     new LazyLoad({
       elements_selector: '.lazy',
     });
+
+    ObjectFitImages();
+    WebFontLoader();
   },
 };

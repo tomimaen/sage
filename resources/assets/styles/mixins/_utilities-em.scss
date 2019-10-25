@@ -1,0 +1,34 @@
+/*
+
+	EM
+
+	Convert values: pixels to ems.
+
+	Usage:
+
+	font-size: em(16);
+	padding: em(10 5);
+
+*/
+@function em($values) {
+  $em-values: ();
+  $em-base: 16;
+
+  @if 1 == length($values) {
+    $em-values: $values / $em-base * 1em;
+  }
+
+  @else {
+    @for $i from 1 through length($values) {
+      $em: nth($values, $i) / $em-base;
+
+      @if ( 0 != $em ) {
+        $em: $em * 1em;
+      }
+
+      $em-values: append($em-values, $em);
+    }
+  }
+
+  @return $em-values;
+}
