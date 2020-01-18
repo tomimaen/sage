@@ -19,9 +19,11 @@ trait NavigationMenu
     {
         $locations = get_nav_menu_locations();
 
-        if (isset($locations[$menu])) {
-            $menu = $locations[$menu];
+        if (!isset($locations[$menu])) {
+            return false;
         }
+
+        $menu = $locations[$menu];
 
         $walker = new \App\Lib\TreeWalkerNavMenu();
         $items = wp_get_nav_menu_items($menu);
